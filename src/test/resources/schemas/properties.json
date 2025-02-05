@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Generated schema for Root",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string"
+      },
+      "alias": {
+        "type": "string"
+      },
+      "countryCode": {
+        "type": ["string", "null"]
+      },
+      "createdAt": {
+        "type": "array",
+        "items": {
+          "type": "number"
+        }
+      }
+    },
+    "required": [
+      "id",
+      "alias",
+      "countryCode",
+      "createdAt"
+    ]
+  }
+}

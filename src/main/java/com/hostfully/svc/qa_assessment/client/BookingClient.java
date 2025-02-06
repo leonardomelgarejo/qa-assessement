@@ -94,4 +94,18 @@ public class BookingClient extends ApiClient{
                 .body(booking)
                 .post(BOOKINGS_ENDPOINT);
     }
+
+    public Response postWithTwoBookingsAtTheSameDay(){
+       Booking booking = BookingDataFactory.createDefaultBooking();
+
+        requestSpec.body(booking)
+                        .post(BOOKINGS_ENDPOINT);
+
+        setAllureRestAssured();
+        return requestSpec
+                .body(booking)
+                .post(BOOKINGS_ENDPOINT);
+
+
+    }
 }

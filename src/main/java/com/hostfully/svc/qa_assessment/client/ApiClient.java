@@ -14,7 +14,7 @@ public class ApiClient {
     protected RequestSpecification requestSpec;
 
     public ApiClient(){
-        this.requestSpec = given().spec(InitialStateSpecs.set()).log().all();
+        this.requestSpec = given().spec(InitialStateSpecs.set());
     }
 
     protected void setAllureRestAssured(){

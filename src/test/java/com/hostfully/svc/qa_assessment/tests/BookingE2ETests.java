@@ -31,25 +31,25 @@ public class BookingE2ETests {
         bookingClient
                 .postBookings()
                     .then()
-                    .statusCode(HttpStatus.SC_CREATED)
-                    .body("$", hasKey("id"))
-                    .body("id", notNullValue())
-                    .body("$", hasKey("startDate"))
-                    .body("startDate", notNullValue())
-                    .body("$", hasKey("endDate"))
-                    .body("endDate", notNullValue())
-                    .body("$", hasKey("status"))
-                    .body("status", notNullValue())
-                    .body("$", hasKey("guest"))
-                    .body("guest", notNullValue())
-                    .body("guest", hasKey("firstName"))
-                    .body("guest.firstName", notNullValue())
-                    .body("guest", hasKey("lastName"))
-                    .body("guest.lastName", notNullValue())
-                    .body("guest", hasKey("dateOfBirth"))
-                    .body("guest.dateOfBirth", notNullValue())
-                    .body("$", hasKey("propertyId"))
-                    .body("propertyId", notNullValue())
+                        .statusCode(HttpStatus.SC_CREATED)
+                        .body("$", hasKey("id"))
+                        .body("id", notNullValue())
+                        .body("$", hasKey("startDate"))
+                        .body("startDate", notNullValue())
+                        .body("$", hasKey("endDate"))
+                        .body("endDate", notNullValue())
+                        .body("$", hasKey("status"))
+                        .body("status", notNullValue())
+                        .body("$", hasKey("guest"))
+                        .body("guest", notNullValue())
+                        .body("guest", hasKey("firstName"))
+                        .body("guest.firstName", notNullValue())
+                        .body("guest", hasKey("lastName"))
+                        .body("guest.lastName", notNullValue())
+                        .body("guest", hasKey("dateOfBirth"))
+                        .body("guest.dateOfBirth", notNullValue())
+                        .body("$", hasKey("propertyId"))
+                        .body("propertyId", notNullValue())
         ;
     }
 
@@ -59,10 +59,10 @@ public class BookingE2ETests {
     public void shouldInsertBookingWithoutId(){
         bookingClient
                 .postBookingsWithoutId()
-                .then()
-                .statusCode(HttpStatus.SC_CREATED)
-                .body("$", hasKey("id"))
-                .body("id", notNullValue())
+                    .then()
+                        .statusCode(HttpStatus.SC_CREATED)
+                        .body("$", hasKey("id"))
+                        .body("id", notNullValue())
         ;
     }
 
@@ -71,9 +71,9 @@ public class BookingE2ETests {
     public void shouldInsertBookingWithoutStartDate(){
         bookingClient
                 .postBookingsWithoutStartDate()
-                .then()
-                .statusCode(HttpStatus.SC_BAD_REQUEST)
-                .body("errors.defaultMessage", contains("Booking start date must be supplied"))
+                    .then()
+                        .statusCode(HttpStatus.SC_BAD_REQUEST)
+                        .body("errors.defaultMessage", contains("Booking start date must be supplied"))
         ;
     }
 
@@ -82,9 +82,9 @@ public class BookingE2ETests {
     public void shouldInsertBookingWithoutEndDate(){
         bookingClient
                 .postBookingsWithoutEndDate()
-                .then()
-                .statusCode(HttpStatus.SC_BAD_REQUEST)
-                .body("errors.defaultMessage", contains("Booking end date must be supplied"))
+                    .then()
+                        .statusCode(HttpStatus.SC_BAD_REQUEST)
+                        .body("errors.defaultMessage", contains("Booking end date must be supplied"))
         ;
     }
 
@@ -93,9 +93,9 @@ public class BookingE2ETests {
     public void shouldInsertBookingWithoutStatus(){
         bookingClient
                 .postBookingsWithoutStatus()
-                .then()
-                .statusCode(HttpStatus.SC_BAD_REQUEST)
-                .body("detail", is("Failed to read request"))
+                    .then()
+                        .statusCode(HttpStatus.SC_BAD_REQUEST)
+                        .body("detail", is("Failed to read request"))
         ;
     }
 
@@ -104,9 +104,9 @@ public class BookingE2ETests {
     public void shouldInsertBookingWithoutGuestFirstName(){
         bookingClient
                 .postBookingsWithoutGuestFirstName()
-                .then()
-                .statusCode(HttpStatus.SC_BAD_REQUEST)
-                .body("errors.defaultMessage", contains("Guest's first name cannot be empty"))
+                    .then()
+                        .statusCode(HttpStatus.SC_BAD_REQUEST)
+                        .body("errors.defaultMessage", contains("Guest's first name cannot be empty"))
         ;
     }
 
@@ -115,9 +115,9 @@ public class BookingE2ETests {
     public void shouldInsertBookingWithoutGuestLastName(){
         bookingClient
                 .postBookingsWithoutGuestLastName()
-                .then()
-                .statusCode(HttpStatus.SC_BAD_REQUEST)
-                .body("errors.defaultMessage", contains("Guest's last name cannot be empty"))
+                    .then()
+                        .statusCode(HttpStatus.SC_BAD_REQUEST)
+                        .body("errors.defaultMessage", contains("Guest's last name cannot be empty"))
         ;
     }
 
@@ -127,8 +127,8 @@ public class BookingE2ETests {
     public void shouldInsertBookingWithoutGuestDateOfBirth(){
         bookingClient
                 .postBookingsWithoutGuestDateOfBirth()
-                .then()
-                .statusCode(HttpStatus.SC_BAD_REQUEST)
+                    .then()
+                    .statusCode(HttpStatus.SC_BAD_REQUEST)
         ;
     }
 
@@ -137,9 +137,21 @@ public class BookingE2ETests {
     public void shouldInsertBookingWithoutPropertyId(){
         bookingClient
                 .postBookingsWithoutPropertyId()
-                .then()
-                .statusCode(HttpStatus.SC_BAD_REQUEST)
-                .body("errors.defaultMessage", contains("Property Identifier must be supplied"))
+                    .then()
+                        .statusCode(HttpStatus.SC_BAD_REQUEST)
+                        .body("errors.defaultMessage", contains("Property Identifier must be supplied"))
+        ;
+    }
+
+    @Test
+    @DisplayName("Should not insert two bookings on the same day")
+    public void shouldNotInsertTwoBookingsOnTheSameDay(){
+        bookingClient
+                .postWithTwoBookingsAtTheSameDay()
+                    .then()
+                        .statusCode(HttpStatus.SC_UNPROCESSABLE_ENTITY)
+                        .body("detail", is("Supplied booking is not valid"))
+                        .body("BOOKING_DATES_UNAVAILABLE", is("BOOKING_DATES_UNAVAILABLE"))
         ;
     }
 

@@ -16,7 +16,6 @@ public class PropertyE2ETests extends BaseAPI {
 
     PropertyClient propertyClient = new PropertyClient();
 
-
     @Test
     @DisplayName("Should list all properties")
     public void shouldListAllProperties(){
@@ -53,20 +52,21 @@ public class PropertyE2ETests extends BaseAPI {
 
         propertyClient
                 .getProperty(propertyId)
-                .then()
-                    .statusCode(HttpStatus.SC_NO_CONTENT)
+                    .then()
+                        .statusCode(HttpStatus.SC_NO_CONTENT)
         ;
     }
 
     @Test
-    @DisplayName("Shouldn't return property for inconsistent id")
+    @DisplayName("Should not return property for inconsistent id")
     public void shouldNotReturnPropertyForInconsistentId(){
         String propertyId = "123";
 
         propertyClient
                 .getProperty(propertyId)
-                .then()
-                .statusCode(HttpStatus.SC_BAD_REQUEST)
+                    .then()
+                        .statusCode(HttpStatus.SC_BAD_REQUEST)
+                        .body("detail", is("Failed to convert 'propertyId' with value: '123'"))
         ;
     }
 
@@ -76,16 +76,16 @@ public class PropertyE2ETests extends BaseAPI {
     public void shouldInsertProperty(){
         propertyClient
                 .postProperties()
-                .then()
-                .statusCode(HttpStatus.SC_CREATED)
-                .body("$", hasKey("id"))
-                .body("id", notNullValue())
-                .body("$", hasKey("alias"))
-                .body("alias", notNullValue())
-                .body("$", hasKey("countryCode"))
-                .body("countryCode", notNullValue())
-                .body("$", hasKey("createdAt"))
-                .body("createdAt", notNullValue())
+                    .then()
+                        .statusCode(HttpStatus.SC_CREATED)
+                        .body("$", hasKey("id"))
+                        .body("id", notNullValue())
+                        .body("$", hasKey("alias"))
+                        .body("alias", notNullValue())
+                        .body("$", hasKey("countryCode"))
+                        .body("countryCode", notNullValue())
+                        .body("$", hasKey("createdAt"))
+                        .body("createdAt", notNullValue())
         ;
     }
 
@@ -95,10 +95,10 @@ public class PropertyE2ETests extends BaseAPI {
     public void shouldInsertPropertyWithoutId() {
         propertyClient
                 .postPropertiesWithoutId()
-                .then()
-                .statusCode(HttpStatus.SC_CREATED)
-                .body("$", hasKey("id"))
-                .body("id", notNullValue())
+                    .then()
+                        .statusCode(HttpStatus.SC_CREATED)
+                        .body("$", hasKey("id"))
+                        .body("id", notNullValue())
         ;
     }
 
@@ -108,22 +108,22 @@ public class PropertyE2ETests extends BaseAPI {
     public void shouldNotInsertPropertyWithoutAlias() {
         propertyClient
                 .postPropertiesWithoutAlias()
-                .then()
-                .statusCode(HttpStatus.SC_BAD_REQUEST)
-                .body("$", hasKey("alias"))
-                .body("alias", notNullValue())
+                    .then()
+                        .statusCode(HttpStatus.SC_BAD_REQUEST)
+                        .body("$", hasKey("alias"))
+                        .body("alias", notNullValue())
         ;
     }
 
     @Test
-    @DisplayName("Should not insert a property without countryCode")
+    @DisplayName("Should insert a property without countryCode")
     public void shouldInsertPropertyWithoutCountry() {
         propertyClient
                 .postPropertiesWithoutCountryCode()
-                .then()
-                .statusCode(HttpStatus.SC_CREATED)
-                .body("$", hasKey("countryCode"))
-                .body("countryCode", nullValue())
+                    .then()
+                        .statusCode(HttpStatus.SC_CREATED)
+                        .body("$", hasKey("countryCode"))
+                        .body("countryCode", nullValue())
         ;
     }
 
@@ -133,10 +133,10 @@ public class PropertyE2ETests extends BaseAPI {
     public void shouldInsertPropertyWithoutCreatedAt() {
         propertyClient
                 .postPropertiesWithoutCreatedAt()
-                .then()
-                .statusCode(HttpStatus.SC_CREATED)
-                .body("$", hasKey("createdAt"))
-                .body("createdAt", notNullValue())
+                    .then()
+                        .statusCode(HttpStatus.SC_CREATED)
+                        .body("$", hasKey("createdAt"))
+                        .body("createdAt", notNullValue())
         ;
     }
 }

@@ -1,6 +1,5 @@
 package com.hostfully.svc.qa_assessment.factory;
 
-import com.hostfully.svc.qa_assessment.model.Guest;
 import com.hostfully.svc.qa_assessment.model.Booking;
 import com.hostfully.svc.qa_assessment.utils.DataRequests;
 import com.hostfully.svc.qa_assessment.utils.StringFaker;

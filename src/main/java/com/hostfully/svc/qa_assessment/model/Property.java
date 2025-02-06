@@ -1,7 +1,5 @@
 package com.hostfully.svc.qa_assessment.model;
 
-import com.hostfully.svc.qa_assessment.enums.CountryCode;
-
 public class Property {
 
     private String id;

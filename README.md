@@ -94,7 +94,7 @@ This is an assessment project on automating testing of Rest APIs using Rest Assu
 └── pom.xml
 ```
 
-## Sobre a estrutura do projeto
+## About project structure
 
 ### src/main/java
 
@@ -157,7 +157,7 @@ Test class that contains the initial settings for running all tests.
 
 ## Pipeline
 
-Esse projeto usa [GitHub Actions](https://docs.github.com/en/actions/about-github-actions/about-continuous-integration-with-github-actions) to run the all the tests in a pipeline.
+This project uses [GitHub Actions](https://docs.github.com/en/actions/about-github-actions/about-continuous-integration-with-github-actions) to run the all the tests in a pipeline.
 
 You can find this setting at https://github.com/leonardomelgarejo/qa-assessement/blob/main/.github/workflows/gha-ci.yml
 

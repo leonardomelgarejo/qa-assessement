@@ -1,0 +1,43 @@
+<div>POST to https://qa-assessment.svc.hostfully.com/bookings</div>
+
+    <h4>Body</h4>
+    <div>
+    <pre class="preformated-text">
+{
+    &quot;id&quot;: &quot;98e4675e-dd4b-4b08-b2f4-e93eb96fa8da&quot;,
+    &quot;startDate&quot;: &quot;2025-02-06&quot;,
+    &quot;endDate&quot;: &quot;&quot;,
+    &quot;status&quot;: &quot;SCHEDULED&quot;,
+    &quot;guest&quot;: {
+        &quot;firstName&quot;: &quot;Magritte&quot;,
+        &quot;lastName&quot;: &quot;Veritatis &quot;,
+        &quot;dateOfBirth&quot;: &quot;2025-02-06&quot;
+    },
+    &quot;propertyId&quot;: &quot;3bd703cc-0ca4-4584-aab4-5109fd1dacbb&quot;
+}    </pre>
+    </div>
+
+    <h4>Headers</h4>
+    <div>
+            <div>Accept: */*</div>
+            <div>Content-Type: application/json</div>
+    </div>
+
+
+
+    <h4>Curl</h4>
+    <div>
+        curl -v -X POST &#39;https://qa-assessment.svc.hostfully.com/bookings&#39; -H &#39;Accept: */*&#39; -H &#39;Content-Type: application/json&#39; -d &#39;{
+    &quot;id&quot;: &quot;98e4675e-dd4b-4b08-b2f4-e93eb96fa8da&quot;,
+    &quot;startDate&quot;: &quot;2025-02-06&quot;,
+    &quot;endDate&quot;: &quot;&quot;,
+    &quot;status&quot;: &quot;SCHEDULED&quot;,
+    &quot;guest&quot;: {
+        &quot;firstName&quot;: &quot;Magritte&quot;,
+        &quot;lastName&quot;: &quot;Veritatis &quot;,
+        &quot;dateOfBirth&quot;: &quot;2025-02-06&quot;
+    },
+    &quot;propertyId&quot;: &quot;3bd703cc-0ca4-4584-aab4-5109fd1dacbb&quot;
+}&#39;
+    </div>
+
